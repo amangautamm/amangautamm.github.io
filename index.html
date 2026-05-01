@@ -1,10 +1,983 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelancer Tools Blog Articles — 5 SEO Articles</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #faf8f3;
+    --accent: #c84b31;
+    --muted: #6b6560;
+    --rule: #e0dbd3;
+    --highlight: #fff3cd;
+    --tag-bg: #f0ede8;
+    --code-bg: #1e1c18;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--ink);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    border-bottom: 3px solid var(--accent);
+  }
+  nav a {
+    color: #d9d5ce;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem;
+    white-space: nowrap;
+    transition: color .2s;
+    border-right: 1px solid #2a2720;
+  }
+  nav a:hover, nav a.active { color: #fff; }
+  nav a.active { border-bottom: 2px solid var(--accent); }
+
+  /* HERO */
+  .site-header {
+    background: var(--ink);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid #2a2720;
+  }
+  .site-header .kicker {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: .8rem;
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff;
+    line-height: 1.2;
+    max-width: 700px;
+    margin: 0 auto .8rem;
+  }
+  .site-header p {
+    color: #8a857e;
+    font-size: 14px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .article-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 1.5rem;
+  }
+  .pill {
+    background: #1e1c18;
+    color: #c4bfb8;
+    border: 1px solid #3a3730;
+    border-radius: 20px;
+    padding: .3rem .9rem;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* LAYOUT */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* ARTICLE */
+  .article {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--rule);
+  }
+  .article:first-of-type { border-top: none; }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1.2rem;
+  }
+  .art-num {
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .25rem .7rem;
+    border-radius: 3px;
+  }
+  .art-kw {
+    background: var(--tag-bg);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: .25rem .7rem;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .art-read { color: var(--muted); font-size: 12px; margin-left: auto; }
+
+  .article h1.art-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+  .article h1.art-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .intro-block {
+    background: #fff;
+    border-left: 4px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 2rem;
+    font-size: 16px;
+    color: #2a2720;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+
+  .article h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    margin: 2.4rem 0 .8rem;
+    color: var(--ink);
+    position: relative;
+    padding-left: 1rem;
+  }
+  .article h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 1.1em;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .article p {
+    margin-bottom: 1rem;
+    color: #2a2720;
+  }
+
+  /* TOOL CARDS */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1.2rem 0 1.8rem;
+  }
+  .tool-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.1rem;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .tool-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.09);
+    transform: translateY(-2px);
+  }
+  .tool-card .tool-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: .3rem;
+    color: var(--ink);
+  }
+  .tool-card .tool-price {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: .4rem;
+  }
+  .tool-card p { font-size: 13.5px; margin: 0; color: var(--muted); line-height: 1.6; }
+
+  /* COMPARISON TABLE */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0 1.8rem;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+  .comp-table thead { background: var(--ink); color: #fff; }
+  .comp-table th {
+    padding: .75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .comp-table tbody tr { border-bottom: 1px solid var(--rule); background: #fff; }
+  .comp-table tbody tr:nth-child(even) { background: var(--tag-bg); }
+  .comp-table td { padding: .65rem 1rem; vertical-align: top; }
+  .comp-table td:first-child { font-weight: 600; }
+  .badge-free { color: #1a7a4e; font-weight: 700; }
+  .badge-paid { color: #c84b31; font-weight: 600; }
+
+  /* PRO/CON */
+  .procon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.2rem 0 1.8rem;
+  }
+  @media(max-width: 560px) { .procon-grid { grid-template-columns: 1fr; } }
+  .pro-box, .con-box {
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+  }
+  .pro-box {
+    background: #edfaf3;
+    border: 1px solid #a8e6c8;
+  }
+  .con-box {
+    background: #fff4f2;
+    border: 1px solid #f5c2ba;
+  }
+  .pro-box h4 { color: #1a7a4e; margin-bottom: .5rem; font-size: 13px; letter-spacing: .07em; text-transform: uppercase; }
+  .con-box h4 { color: #c84b31; margin-bottom: .5rem; font-size: 13px; letter-spacing: .07em; text-transform: uppercase; }
+  .pro-box ul, .con-box ul { list-style: none; padding: 0; }
+  .pro-box li, .con-box li { font-size: 14px; margin-bottom: .35rem; line-height: 1.5; }
+  .pro-box li::before { content: '✓ '; color: #1a7a4e; font-weight: 700; }
+  .con-box li::before { content: '✕ '; color: #c84b31; font-weight: 700; }
+
+  /* STEPS */
+  .steps { list-style: none; padding: 0; margin: 1rem 0 1.8rem; counter-reset: step-ctr; }
+  .steps li {
+    counter-increment: step-ctr;
+    display: flex;
+    gap: .9rem;
+    margin-bottom: .9rem;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: .8rem 1rem;
+  }
+  .steps li::before {
+    content: counter(step-ctr);
+    min-width: 28px; height: 28px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: .05rem;
+  }
+  .steps li span { font-size: 14.5px; color: #2a2720; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--highlight);
+    border: 1px solid #f0d060;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1.4rem 0;
+    font-size: 14.5px;
+    color: #3d3000;
+  }
+  .callout strong { color: #7a5200; }
+
+  /* CONCLUSION */
+  .conclusion-box {
+    background: var(--ink);
+    color: #d9d5ce;
+    border-radius: 10px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0 1rem;
+  }
+  .conclusion-box h2 {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: .7rem;
+    padding-left: 0;
+  }
+  .conclusion-box h2::before { display: none; }
+  .conclusion-box p { color: #a09a94; margin-bottom: .7rem; font-size: 15px; }
+  .conclusion-box a {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: .5rem 1.2rem;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    margin-top: .5rem;
+  }
+
+  /* DIVIDER */
+  .article-divider {
+    text-align: center;
+    margin: 4rem 0 0;
+    position: relative;
+  }
+  .article-divider::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    position: absolute;
+    top: 50%;
+  }
+  .article-divider span {
+    background: var(--paper);
+    padding: 0 1rem;
+    position: relative;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  /* COPY BUTTON */
+  .copy-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -.5rem;
+  }
+  .copy-btn {
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: .3rem .8rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: var(--rule); }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  @media(max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .comp-table { font-size: 12px; }
+    .comp-table th, .comp-table td { padding: .5rem .6rem; }
+  }
+</style>
 </head>
 <body>
-  <h1>Welcome to my site</h1>
-  <p>My first website is live.</p>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="kicker">SEO Content Pack · AI Tools + Freelancing Niche</div>
+  <h1>5 Ready-to-Publish Blog Articles for Tier-1 Audiences</h1>
+  <p>Target: US, UK, CA, AU · High CPM Keywords · Optimized for AdSense + Affiliates</p>
+  <div class="article-pills">
+    <span class="pill">Time Tracking</span>
+    <span class="pill">Free Software</span>
+    <span class="pill">Invoicing</span>
+    <span class="pill">CRM</span>
+    <span class="pill">Accounting</span>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#a1" class="active">1 · Time Tracking</a>
+  <a href="#a2">2 · Free Software</a>
+  <a href="#a3">3 · Invoicing</a>
+  <a href="#a4">4 · CRM</a>
+  <a href="#a5">5 · Accounting</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ARTICLE 1 -->
+<!-- ═══════════════════════════════════════════════ -->
+<article class="article" id="a1">
+  <div class="article-meta">
+    <span class="art-num">Article 01</span>
+    <span class="art-kw">Keyword: best time tracking tools for freelancers</span>
+    <span class="art-read">~1,500 words</span>
+  </div>
+
+  <h1 class="art-title">Best Time Tracking Tools for Freelancers in <em>2025</em> (Tested & Ranked)</h1>
+
+  <div class="intro-block">
+    You finished a project. Your client asks: "How many hours did this actually take?" You guess. They push back. You lose money — or worse, you lose trust. Sound familiar? Most freelancers are flying blind when it comes to tracking time, and it's quietly destroying their hourly rate. The right time tracking tool doesn't just log hours — it helps you invoice accurately, spot low-value clients, and prove your worth. Here are the <strong>7 best time tracking tools for freelancers in 2025</strong>, tested across real workflows.
+  </div>
+
+  <h2>What Is Time Tracking Software?</h2>
+  <p>Time tracking software records how long you spend on tasks, projects, or clients. For freelancers, it's the difference between charging $500 and getting paid $500 — especially if you bill hourly or need to justify project-based pricing. Modern tools do far more than start/stop timers: they generate reports, sync with invoicing apps, catch idle time, and even analyze productivity patterns.</p>
+  <p>The core features to look for: <strong>one-click timers</strong>, project/client tagging, integrations (Slack, Notion, Trello), reporting dashboards, and ideally a mobile app for on-the-go tracking.</p>
+
+  <h2>Best Time Tracking Tools for Freelancers</h2>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">🕐 Toggl Track</div>
+      <div class="tool-price">Free plan · Paid from $9/mo</div>
+      <p>The gold standard for freelancers. Beautiful UI, one-click timer, Pomodoro mode, and 100+ integrations. Free plan covers unlimited projects.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">⏱ Clockify</div>
+      <div class="tool-price">Free forever (unlimited users)</div>
+      <p>Best free time tracker on the market. Unlimited everything on the free plan — projects, users, reports. Perfect for solo freelancers and small teams.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🧮 Harvest</div>
+      <div class="tool-price">Free (1 seat, 2 projects) · $12/mo</div>
+      <p>Built for freelancers who invoice. Tight integration with invoicing and Stripe/PayPal. Tracks time, expenses, and sends invoices in one place.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 RescueTime</div>
+      <div class="tool-price">Free · $12/mo Premium</div>
+      <p>Runs silently in the background. Automatically classifies every app and website you visit. No manual timers needed — ideal for distracted workers.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔷 Time Doctor</div>
+      <div class="tool-price">From $7/user/mo</div>
+      <p>Best for freelancers with remote clients. Screenshots, activity monitoring, client-facing reports. Proves your work hours to skeptical clients.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📌 Everhour</div>
+      <div class="tool-price">Free up to 5 users · $8.50/mo</div>
+      <p>Embeds inside Asana, Trello, Jira, and GitHub. Track time without leaving your project management tool. Seamless for devs and designers.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">⚡ Timely</div>
+      <div class="tool-price">From $9/mo</div>
+      <p>AI-powered automatic time tracking. Learns your work patterns and logs time intelligently. No manual entry required after initial setup.</p>
+    </div>
+  </div>
+
+  <h2>Comparison: Which Tool Fits Your Workflow?</h2>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Tool</th><th>Best For</th><th>Free Plan?</th><th>Invoicing?</th><th>Mobile App</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Toggl Track</td><td>General freelancing</td><td class="badge-free">Yes</td><td>No</td><td>iOS + Android</td></tr>
+      <tr><td>Clockify</td><td>Budget-conscious</td><td class="badge-free">Yes (unlimited)</td><td>Basic</td><td>iOS + Android</td></tr>
+      <tr><td>Harvest</td><td>Invoicing + time combo</td><td class="badge-free">Limited</td><td class="badge-free">Yes</td><td>iOS + Android</td></tr>
+      <tr><td>RescueTime</td><td>Productivity insights</td><td class="badge-free">Yes</td><td>No</td><td>iOS + Android</td></tr>
+      <tr><td>Time Doctor</td><td>Client accountability</td><td class="badge-paid">No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Everhour</td><td>PM tool integration</td><td class="badge-free">Yes</td><td>Basic</td><td>Yes</td></tr>
+      <tr><td>Timely</td><td>Automatic logging</td><td class="badge-paid">No</td><td>No</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>💡 Pro Tip:</strong> If you're just starting out, use <strong>Clockify</strong> (free forever) to build the habit. Once you're tracking consistently, upgrade to <strong>Harvest</strong> if you need invoicing, or <strong>Toggl Track</strong> for deeper reporting.
+  </div>
+
+  <h2>Pros &amp; Cons of Using Time Tracking Tools</h2>
+  <div class="procon-grid">
+    <div class="pro-box">
+      <h4>✅ Pros</h4>
+      <ul>
+        <li>Accurate invoicing = fewer disputes</li>
+        <li>Reveals which clients are underpriced</li>
+        <li>Improves personal productivity</li>
+        <li>Tax-ready reports for deductions</li>
+        <li>Boosts confidence in rate negotiations</li>
+        <li>Most tools have generous free plans</li>
+      </ul>
+    </div>
+    <div class="con-box">
+      <h4>❌ Cons</h4>
+      <ul>
+        <li>Adds friction to your workflow if manual</li>
+        <li>Some tools are overkill for soloists</li>
+        <li>Data siloed if no invoicing integration</li>
+        <li>Habit takes 2–3 weeks to build</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="conclusion-box">
+    <h2>Conclusion</h2>
+    <p>The best time tracking tool for freelancers in 2025 is the one you'll actually use. For most freelancers, <strong>Toggl Track</strong> or <strong>Clockify</strong> covers 90% of needs for free. If you bill hourly and need invoicing too, <strong>Harvest</strong> is the smartest all-in-one pick. Start tracking today — even one week of data will change how you price your services.</p>
+    <a href="#">→ Try Clockify Free</a>
+  </div>
+</article>
+
+<div class="article-divider"><span>Next Article</span></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ARTICLE 2 -->
+<!-- ═══════════════════════════════════════════════ -->
+<article class="article" id="a2">
+  <div class="article-meta">
+    <span class="art-num">Article 02</span>
+    <span class="art-kw">Keyword: free time tracking software</span>
+    <span class="art-read">~1,400 words</span>
+  </div>
+
+  <h1 class="art-title">7 Best <em>Free</em> Time Tracking Software in 2025 (No Credit Card Required)</h1>
+
+  <div class="intro-block">
+    You're freelancing on a tight budget — the last thing you want is yet another $12/month subscription. But tracking your hours is non-negotiable if you want to get paid fairly. The good news? In 2025, the best free time tracking software is genuinely good — not crippled, not trial-limited, not pay-to-win. Here are 7 completely free tools that won't ask for your credit card.
+  </div>
+
+  <h2>What Makes a Time Tracker "Truly Free"?</h2>
+  <p>Not all "free" plans are equal. Some limit projects to 2 or 3. Others cap users, delete your data after 30 days, or hide reports behind a paywall. A <strong>truly free time tracker</strong> gives you unlimited projects, full reporting, and data export — at no cost, forever. The 7 tools below pass this test for solo freelancers.</p>
+
+  <h2>Best Free Time Tracking Software (2025)</h2>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">🥇 Clockify</div>
+      <div class="tool-price">100% Free Forever</div>
+      <p>Unlimited projects, unlimited clients, unlimited reports. The most generous free plan in the industry. Web, desktop, mobile, browser extension — all free.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🥈 Toggl Track (Free)</div>
+      <div class="tool-price">Free up to 5 users</div>
+      <p>100+ integrations, beautiful UI, Pomodoro timer, detailed reports. Free plan covers everything a solo freelancer needs.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🥉 TMetric</div>
+      <div class="tool-price">Free up to 5 users</div>
+      <p>Clean interface, browser extension, integrates with 50+ apps. Includes basic invoicing on the free plan — rare for a free tool.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📋 Timecamp</div>
+      <div class="tool-price">Free (1 user)</div>
+      <p>Automatic time tracking with keyword detection. Tracks apps and URLs passively. Good for freelancers who forget to start timers.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔬 RescueTime Lite</div>
+      <div class="tool-price">Free forever</div>
+      <p>Fully automatic background tracking. No timers needed. Weekly email reports, productivity scoring. No manual entry ever.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📓 TrackingTime</div>
+      <div class="tool-price">Free up to 3 users</div>
+      <p>Combines time tracking with a task manager. Visual timeline view, client reports, Google Docs and Trello integration on free plan.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🧩 Kimai</div>
+      <div class="tool-price">Free (Open Source)</div>
+      <p>Self-hosted, open-source time tracker. Full control over your data, no subscription ever. Requires some setup — great for devs.</p>
+    </div>
+  </div>
+
+  <h2>How to Choose the Right Free Time Tracker (Step-by-Step)</h2>
+  <ol class="steps">
+    <li><span><strong>Count your projects:</strong> If you have more than 3 active clients, eliminate tools with project limits. Clockify is your safest bet.</span></li>
+    <li><span><strong>Decide: manual vs. automatic.</strong> Hate starting timers? Go automatic (RescueTime, Timecamp). Fine with manual? Toggl or Clockify.</span></li>
+    <li><span><strong>Check integrations:</strong> List the tools you use daily (Notion, Asana, Slack). Pick a tracker that syncs with them — saves 15+ min/week.</span></li>
+    <li><span><strong>Test the mobile app:</strong> If you work from a phone or tablet, download the app before committing. Clockify and Toggl have the best mobile experience.</span></li>
+    <li><span><strong>Export a test report:</strong> After 1 week, export a CSV or PDF report. If it's readable and accurate, you've found your tool.</span></li>
+  </ol>
+
+  <h2>Pros &amp; Cons: Free vs. Paid Time Trackers</h2>
+  <div class="procon-grid">
+    <div class="pro-box">
+      <h4>✅ Free Plans — Pros</h4>
+      <ul>
+        <li>Zero cost — great for new freelancers</li>
+        <li>Clockify's free plan rivals paid tools</li>
+        <li>No commitment — switch anytime</li>
+        <li>Core tracking features are all there</li>
+      </ul>
+    </div>
+    <div class="con-box">
+      <h4>❌ Free Plans — Cons</h4>
+      <ul>
+        <li>Limited team features (usually solo only)</li>
+        <li>No billable rate tracking on most free tiers</li>
+        <li>Advanced reports may be gated</li>
+        <li>Customer support often slower</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="conclusion-box">
+    <h2>Conclusion</h2>
+    <p>For 95% of freelancers, <strong>Clockify's free plan is all you'll ever need.</strong> It's genuinely unlimited, well-designed, and works across all platforms. If you want automatic tracking without lifting a finger, pair it with <strong>RescueTime Lite</strong> in the background. Both are free, both work together, and together they give you a complete picture of your workday.</p>
+    <a href="#">→ Start Free with Clockify</a>
+  </div>
+</article>
+
+<div class="article-divider"><span>Next Article</span></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ARTICLE 3 -->
+<!-- ═══════════════════════════════════════════════ -->
+<article class="article" id="a3">
+  <div class="article-meta">
+    <span class="art-num">Article 03</span>
+    <span class="art-kw">Keyword: invoicing software for freelancers</span>
+    <span class="art-read">~1,500 words</span>
+  </div>
+
+  <h1 class="art-title">Best <em>Invoicing Software</em> for Freelancers in 2025 (Get Paid Faster)</h1>
+
+  <div class="intro-block">
+    You did the work. Now you need to get paid — without chasing clients for weeks, manually calculating taxes, or building invoices in Google Docs like it's 2010. The right invoicing software for freelancers sends professional invoices in under 2 minutes, auto-reminds late payers, and accepts online payments via card or bank transfer. Here are the best options in 2025.
+  </div>
+
+  <h2>What Is Invoicing Software?</h2>
+  <p>Invoicing software is a tool that lets you create, send, and track professional invoices to clients. For freelancers, it replaces manual Word/Excel invoices with automated systems that track payment status, send overdue reminders, apply taxes, and accept online payments — often with one click.</p>
+  <p>Key features to look for: <strong>customizable invoice templates</strong>, online payment acceptance (Stripe, PayPal), recurring invoices, automatic reminders, expense tracking, and multi-currency support for international clients.</p>
+
+  <h2>Best Invoicing Software for Freelancers</h2>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">💜 FreshBooks</div>
+      <div class="tool-price">From $17/mo (30-day free trial)</div>
+      <p>Built specifically for freelancers. Beautiful invoices, automatic late payment reminders, time tracking built in, and accepts credit cards instantly.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📗 Wave</div>
+      <div class="tool-price">Free invoicing forever</div>
+      <p>100% free invoicing, estimates, and accounting. Charges only for payment processing (2.9% + 30¢). Best free option for serious freelancers.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">💼 HoneyBook</div>
+      <div class="tool-price">From $16/mo</div>
+      <p>More than invoicing — a full freelancer CRM. Contracts, proposals, invoices, and payments in one place. Popular with creatives (photographers, designers).</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🟢 AND.CO (Fiverr)</div>
+      <div class="tool-price">Free · Pro $18/mo</div>
+      <p>Built for freelancers by Fiverr. Proposals, contracts, invoices, time tracking. Free plan is very solid for solopreneurs.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔵 Invoice Ninja</div>
+      <div class="tool-price">Free (open source) · $10/mo hosted</div>
+      <p>Feature-rich, self-hostable invoicing. Supports 40+ payment gateways, recurring invoices, client portal. Best power-user free tool.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🟠 QuickBooks Self-Employed</div>
+      <div class="tool-price">$15/mo (US)</div>
+      <p>Invoicing + mileage tracking + tax estimation in one. Best for US freelancers who want tax prep built into their invoicing workflow.</p>
+    </div>
+  </div>
+
+  <h2>How to Set Up Your First Freelance Invoice (Step-by-Step)</h2>
+  <ol class="steps">
+    <li><span><strong>Choose your tool</strong> — Wave for free, FreshBooks for best experience, HoneyBook for creatives.</span></li>
+    <li><span><strong>Add your business details</strong> — Name, address, email, logo, and bank/payment info.</span></li>
+    <li><span><strong>Set your payment terms</strong> — Net 7 (recommended for freelancers), Net 14, or Net 30. Display this clearly on every invoice.</span></li>
+    <li><span><strong>Create your invoice template</strong> — Include: invoice number, issue date, due date, itemized services, subtotal, tax (if applicable), and total.</span></li>
+    <li><span><strong>Enable online payments</strong> — Connect Stripe or PayPal so clients can pay with one click. This alone cuts payment delays by 50%.</span></li>
+    <li><span><strong>Set up auto-reminders</strong> — Schedule reminders at 3 days before due, on due date, and 3 days after. Most tools do this automatically.</span></li>
+  </ol>
+
+  <div class="callout">
+    <strong>💡 Quick Win:</strong> Add a 2% early payment discount on invoices (e.g., "2% off if paid within 5 days"). This small incentive regularly gets you paid 2–3 weeks faster — especially from corporate clients.
+  </div>
+
+  <h2>Pros &amp; Cons of Using Invoicing Software</h2>
+  <div class="procon-grid">
+    <div class="pro-box">
+      <h4>✅ Pros</h4>
+      <ul>
+        <li>Professional appearance builds trust</li>
+        <li>Automatic reminders reduce awkward follow-ups</li>
+        <li>Online payments mean faster payment</li>
+        <li>Tax-ready records at year-end</li>
+        <li>Wave is completely free</li>
+      </ul>
+    </div>
+    <div class="con-box">
+      <h4>❌ Cons</h4>
+      <ul>
+        <li>Payment processing fees (2.9% typical)</li>
+        <li>Learning curve for advanced features</li>
+        <li>Premium tools $15–$30/mo add up</li>
+        <li>Some clients still prefer PDF email invoices</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="conclusion-box">
+    <h2>Conclusion</h2>
+    <p>If you're just starting out, <strong>Wave</strong> is the best free invoicing software for freelancers — no strings attached. If you're established and billing $3,000+/month, <strong>FreshBooks</strong> pays for itself by reducing late payments alone. Whatever you pick, ditch the Google Docs invoices today — professional invoicing software changes how clients perceive your business.</p>
+    <a href="#">→ Try Wave for Free</a>
+  </div>
+</article>
+
+<div class="article-divider"><span>Next Article</span></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ARTICLE 4 -->
+<!-- ═══════════════════════════════════════════════ -->
+<article class="article" id="a4">
+  <div class="article-meta">
+    <span class="art-num">Article 04</span>
+    <span class="art-kw">Keyword: CRM for freelancers</span>
+    <span class="art-read">~1,450 words</span>
+  </div>
+
+  <h1 class="art-title">Best <em>CRM for Freelancers</em> in 2025: Manage Clients Without the Overwhelm</h1>
+
+  <div class="intro-block">
+    You're juggling 5 clients, 12 emails, 3 proposals, and a follow-up you forgot to send 2 weeks ago. A missed reply costs you the project. A forgotten follow-up costs you the repeat business. Most freelancers don't think they need a CRM — until they lose a $5,000 client to disorganization. Here are the best CRM tools built (or perfectly suited) for freelancers in 2025.
+  </div>
+
+  <h2>What Is a CRM for Freelancers?</h2>
+  <p>CRM stands for <strong>Customer Relationship Management</strong>. For freelancers, it's not the complex enterprise software corporations use — it's a simple system to track leads, manage active clients, store conversation history, send proposals, and remember to follow up. Think of it as a smart address book combined with a task manager for your business relationships.</p>
+  <p>The freelancer-specific features to look for: <strong>contact and deal tracking</strong>, proposal and contract management, email integration, pipeline view (lead → proposal → active → complete), and ideally invoicing in one place.</p>
+
+  <h2>Best CRM Tools for Freelancers</h2>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">🤝 HoneyBook</div>
+      <div class="tool-price">From $16/mo</div>
+      <p>The #1 CRM built specifically for freelancers and creative businesses. Proposals, contracts, invoices, scheduling, and payments all in one workflow. Clients sign and pay in one step.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🟡 Dubsado</div>
+      <div class="tool-price">Free (3 clients) · $20/mo</div>
+      <p>Extremely powerful freelancer CRM. Workflow automation, branded client portals, questionnaires, custom forms. Steeper learning curve but highly customizable.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔶 HubSpot CRM</div>
+      <div class="tool-price">Free forever (generous)</div>
+      <p>Enterprise-grade CRM, completely free for the core features. Contact management, deal pipelines, email tracking, meeting scheduler. Best free CRM available.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📌 Notion CRM</div>
+      <div class="tool-price">Free with Notion</div>
+      <p>Build a custom CRM inside Notion using templates. Infinitely flexible, syncs with your notes and projects. Best for freelancers who already live in Notion.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔷 Bonsai</div>
+      <div class="tool-price">From $21/mo</div>
+      <p>All-in-one platform: CRM + proposals + contracts + invoicing + time tracking. Popular with US-based freelancers for its built-in tax estimation.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🟣 Folk CRM</div>
+      <div class="tool-price">Free · From $20/mo</div>
+      <p>Modern, beautifully designed CRM with AI-powered contact enrichment. Pulls LinkedIn data automatically. Great for freelancers who do outreach-heavy business development.</p>
+    </div>
+  </div>
+
+  <h2>How to Set Up a Simple Freelancer CRM (Pipeline Method)</h2>
+  <ol class="steps">
+    <li><span><strong>Define your pipeline stages:</strong> Lead → Qualified → Proposal Sent → Negotiating → Active Client → Completed → Archived</span></li>
+    <li><span><strong>Import your existing contacts</strong> from Gmail, LinkedIn, or a spreadsheet. Most CRMs support CSV import.</span></li>
+    <li><span><strong>Create a card for every prospect</strong> — include their budget, deadline, source (referral, LinkedIn, etc.), and any notes from your first call.</span></li>
+    <li><span><strong>Set follow-up tasks</strong> — after every proposal, set a reminder for 3 business days later. Non-negotiable. Most deals close on the follow-up.</span></li>
+    <li><span><strong>Log every important email</strong> — either forward to your CRM or use the Gmail integration. Context is everything in client relationships.</span></li>
+    <li><span><strong>Review your pipeline weekly</strong> — every Monday, 10 minutes. Move deals forward, archive dead leads, and action your follow-ups.</span></li>
+  </ol>
+
+  <h2>Pros &amp; Cons of Using a CRM as a Freelancer</h2>
+  <div class="procon-grid">
+    <div class="pro-box">
+      <h4>✅ Pros</h4>
+      <ul>
+        <li>Never miss a follow-up again</li>
+        <li>Full context before every client call</li>
+        <li>Identify your best lead sources</li>
+        <li>Scales as your client base grows</li>
+        <li>HubSpot and Notion are free</li>
+      </ul>
+    </div>
+    <div class="con-box">
+      <h4>❌ Cons</h4>
+      <ul>
+        <li>Overkill if you have under 5 clients</li>
+        <li>Requires consistent data entry</li>
+        <li>HoneyBook/Dubsado can be pricey</li>
+        <li>Switching CRMs later is painful</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>💡 Freelancer Hack:</strong> If you have fewer than 10 active clients, start with a <strong>free Notion CRM template</strong>. Once you're consistently managing 10+ relationships, upgrade to HoneyBook or Dubsado for automation.
+  </div>
+
+  <div class="conclusion-box">
+    <h2>Conclusion</h2>
+    <p>The best CRM for freelancers depends on your volume and workflow. For simplicity + power + free: <strong>HubSpot CRM</strong>. For freelancers who want an all-in-one business hub: <strong>HoneyBook</strong>. For maximum customization: <strong>Dubsado</strong>. Whatever you choose, start using it this week — your future self (and your bank account) will thank you.</p>
+    <a href="#">→ Get HubSpot CRM Free</a>
+  </div>
+</article>
+
+<div class="article-divider"><span>Next Article</span></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ARTICLE 5 -->
+<!-- ═══════════════════════════════════════════════ -->
+<article class="article" id="a5">
+  <div class="article-meta">
+    <span class="art-num">Article 05</span>
+    <span class="art-kw">Keyword: best accounting software for freelancers</span>
+    <span class="art-read">~1,500 words</span>
+  </div>
+
+  <h1 class="art-title">Best <em>Accounting Software</em> for Freelancers in 2025 (Tax Season Sorted)</h1>
+
+  <div class="intro-block">
+    Tax season shouldn't feel like a crime scene. But for most freelancers, it does — receipts in three apps, income across five platforms, no idea what you owe in quarterly taxes. The right accounting software for freelancers turns that chaos into a clean dashboard: income tracked, expenses categorized, taxes estimated, invoices paid. Here are the best options for 2025, tested for real freelance workflows.
+  </div>
+
+  <h2>What Is Accounting Software for Freelancers?</h2>
+  <p>Freelancer accounting software tracks your <strong>income and expenses</strong>, categorizes transactions, estimates your tax liability, and helps you prepare for filing — without needing to hire a bookkeeper. Unlike enterprise accounting tools (looking at you, SAP), freelancer-focused software is designed for single-person businesses: simple dashboards, automated bank feeds, receipt capture, and one-click profit/loss reports.</p>
+  <p>What separates good from great: <strong>automatic expense categorization</strong>, mileage tracking, quarterly tax estimates, multi-currency support (for international clients), and clean data export for your accountant.</p>
+
+  <h2>Best Accounting Software for Freelancers</h2>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">📊 FreshBooks</div>
+      <div class="tool-price">From $17/mo</div>
+      <p>Best overall for freelancers. Combines accounting, invoicing, and time tracking. Double-entry accounting, expense tracking, and accountant-ready reports. Purpose-built for self-employed.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🌊 Wave</div>
+      <div class="tool-price">Free accounting + invoicing</div>
+      <p>Best free option. Full double-entry accounting, unlimited invoices, expense tracking, and bank connections — all free. Ideal for freelancers under $100K/year revenue.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🟩 QuickBooks Self-Employed</div>
+      <div class="tool-price">$15/mo (US)</div>
+      <p>Best for US freelancers with complex taxes. Tracks mileage automatically, estimates quarterly taxes, separates business/personal expenses, and exports directly to TurboTax.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔵 Xero</div>
+      <div class="tool-price">From $13/mo</div>
+      <p>Best for freelancers with international clients. Handles 160+ currencies, integrates with 1,000+ apps. Preferred by accountants in UK, AU, NZ, and Canada.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🍀 Sage Accounting</div>
+      <div class="tool-price">From $7.50/mo</div>
+      <p>Good budget option for UK/EU freelancers. VAT-ready, MTD-compliant (UK), clean UI. More affordable than Xero for basic freelance accounting.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🦋 Zoho Books</div>
+      <div class="tool-price">Free (under $50K revenue) · From $15/mo</div>
+      <p>Excellent free tier for smaller freelancers. Full accounting suite, client portal, automated workflows, and strong integration with Zoho's other tools.</p>
+    </div>
+  </div>
+
+  <h2>Comparison: Which Accounting Software Should You Use?</h2>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Tool</th><th>Best For</th><th>Free?</th><th>Tax Features</th><th>Best Region</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FreshBooks</td><td>All-round freelancing</td><td class="badge-paid">Trial only</td><td>Good</td><td>US, CA, UK</td></tr>
+      <tr><td>Wave</td><td>Budget freelancers</td><td class="badge-free">Yes</td><td>Basic</td><td>US, CA</td></tr>
+      <tr><td>QB Self-Employed</td><td>US solopreneurs</td><td class="badge-paid">No</td><td>⭐⭐⭐⭐⭐</td><td>US only</td></tr>
+      <tr><td>Xero</td><td>International clients</td><td class="badge-paid">Trial only</td><td>Strong</td><td>UK, AU, NZ, CA</td></tr>
+      <tr><td>Sage</td><td>UK freelancers</td><td class="badge-paid">No</td><td>VAT/MTD ready</td><td>UK, EU</td></tr>
+      <tr><td>Zoho Books</td><td>Low-revenue freelancers</td><td class="badge-free">Under $50K</td><td>Good</td><td>Global</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How to Set Up Freelance Accounting (Step-by-Step)</h2>
+  <ol class="steps">
+    <li><span><strong>Open a separate business bank account</strong> — mixing personal and business finances is the #1 freelancer accounting mistake. Takes 10 minutes online.</span></li>
+    <li><span><strong>Connect your bank to your accounting software</strong> — most tools offer automatic bank feeds. This auto-imports every transaction daily.</span></li>
+    <li><span><strong>Set up expense categories</strong> — Software, Internet, Home Office, Equipment, Professional Development, Marketing. Customize to your freelance type.</span></li>
+    <li><span><strong>Upload or photograph receipts</strong> — use the mobile app to snap receipts immediately. Most tools use OCR to auto-fill amount and vendor.</span></li>
+    <li><span><strong>Set up quarterly tax reminders</strong> — in the US: April 15, June 15, Sept 15, Jan 15. Use your tool's tax estimate dashboard to know what to set aside.</span></li>
+    <li><span><strong>Run a P&L report monthly</strong> — a 5-minute monthly review of your profit & loss keeps you informed and stress-free at year-end.</span></li>
+  </ol>
+
+  <div class="callout">
+    <strong>💡 Tax Tip for Freelancers:</strong> Set aside <strong>25–30% of every payment</strong> into a separate savings account immediately. In most Tier-1 countries, self-employment tax + income tax at higher income levels reaches this range. Automate a transfer the same day client payments arrive.
+  </div>
+
+  <h2>Pros &amp; Cons of Freelance Accounting Software</h2>
+  <div class="procon-grid">
+    <div class="pro-box">
+      <h4>✅ Pros</h4>
+      <ul>
+        <li>Year-round clarity on income/expenses</li>
+        <li>No tax season panic</li>
+        <li>Maximizes deductible expenses</li>
+        <li>Professional reports for accountants</li>
+        <li>Wave is completely free</li>
+        <li>Saves 10+ hours per year vs manual</li>
+      </ul>
+    </div>
+    <div class="con-box">
+      <h4>❌ Cons</h4>
+      <ul>
+        <li>Monthly cost adds up ($15–$30)</li>
+        <li>Still need accountant for complex taxes</li>
+        <li>Bank sync sometimes breaks</li>
+        <li>Overkill if you have 1–2 clients</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="conclusion-box">
+    <h2>Conclusion</h2>
+    <p>For US freelancers: <strong>QuickBooks Self-Employed</strong> is worth every penny for its tax features alone. For UK/AU/international: <strong>Xero</strong> is the accountant-preferred choice. For anyone starting out or keeping costs low: <strong>Wave</strong> is unbeatable at zero cost. Whatever you choose, set it up today — every week you wait is another week of messy records you'll have to untangle at tax time.</p>
+    <a href="#">→ Try Wave Accounting Free</a>
+  </div>
+</article>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:#6b6560;padding:2rem;text-align:center;font-size:13px;margin-top:4rem;border-top:3px solid var(--accent);">
+  <p style="margin-bottom:.3rem;color:#a09a94;">5 SEO Articles · AI Tools + Freelancing Niche · Tier-1 Audience</p>
+  <p>Keywords: time tracking tools · free time tracking · invoicing software · CRM · accounting software</p>
+</footer>
+
+<script>
+  // Active nav highlighting on scroll
+  const articles = document.querySelectorAll('.article');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const id = entry.target.id;
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  articles.forEach(a => observer.observe(a));
+</script>
+
 </body>
 </html>
