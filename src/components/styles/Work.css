@@ -107,6 +107,34 @@
   font-size: 15px;
 }
 
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.github-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.github-button svg {
+  font-size: 18px;
+}
+
 .carousel-image-wrapper {
   flex: 1;
   display: flex;

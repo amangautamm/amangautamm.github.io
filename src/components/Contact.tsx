@@ -11,27 +11,46 @@ const Contact = () => {
             <h4>Connect</h4>
             <p>
               <a
-                href="https://www.linkedin.com/in/akashrmalhotra/"
+                href="https://www.linkedin.com/in/devsaman/"
                 target="_blank"
                 rel="noreferrer"
                 data-cursor="disable"
               >
-                LinkedIn — akashrmalhotra
+                LinkedIn — devsaman
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://t.me/lege9d"
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+              >
+                Telegram — @lege9d
+              </a>
+            </p>
+            <p>
+              <a
+                href="mailto:aman@amanblaze.in"
+                data-cursor="disable"
+              >
+                Email — aman@amanblaze.in
               </a>
             </p>
             <h4>Education</h4>
             <p>
-              PGPWE (MBA), Indian Institute of Management, Lucknow — 2021–2023
+              Master of Arts (M.A.), Guru Jambheshwar University, Moradabad —
+              2025–Present
             </p>
             <p>
-              B.Tech Computer Science, Manav Rachna Educational Institutions —
-              2009–2013
+              Bachelor of Arts (B.A.), Mahatma Jyotiba Phule Rohilkhand
+              University, Bareilly — 2022–2025
             </p>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
             <a
-              href="https://github.com/akashrmalhotra"
+              href="https://github.com/amangautamm"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
@@ -40,7 +59,7 @@ const Contact = () => {
               GitHub <MdArrowOutward />
             </a>
             <a
-              href="https://www.linkedin.com/in/akashrmalhotra/"
+              href="https://www.linkedin.com/in/devsaman/"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
@@ -49,16 +68,16 @@ const Contact = () => {
               LinkedIn <MdArrowOutward />
             </a>
             <a
-              href="https://www.youtube.com/@Leftbraincoder"
+              href="https://x.com/Realaman78"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
               className="contact-social"
             >
-              YouTube <MdArrowOutward />
+              X (Twitter) <MdArrowOutward />
             </a>
             <a
-              href="https://www.instagram.com/leftbraincoder/"
+              href="https://www.instagram.com/a.g4y"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
@@ -69,10 +88,10 @@ const Contact = () => {
           </div>
           <div className="contact-box">
             <h2>
-              Designed and Developed <br /> by <span>Akash Malhotra</span>
+              Designed and Developed <br /> by <span>Aman Kumar</span>
             </h2>
             <h5>
-              <MdCopyright /> 2026
+              <MdCopyright /> 2026 | Uttar Pradesh, India
             </h5>
           </div>
         </div>
