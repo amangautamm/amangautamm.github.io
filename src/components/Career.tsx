@@ -32,7 +32,7 @@ const Career = () => {
                 <h4>App Development Intern</h4>
                 <h5>HexSoftwares</h5>
               </div>
-              <h3>2024–NOW</h3>
+              <h3>2026–NOW</h3>
             </div>
             <p>
               Working on end-to-end mobile application development, focusing on 
@@ -45,7 +45,7 @@ const Career = () => {
                 <h4>Volunteer</h4>
                 <h5>Hackathons & Tech Events</h5>
               </div>
-              <h3>2024–NOW</h3>
+              <h3>2026–NOW</h3>
             </div>
             <p>
               Actively volunteering and participating in various hackathons, 
