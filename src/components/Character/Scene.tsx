@@ -73,6 +73,13 @@ const Scene = () => {
             handleResize(renderer, camera, canvasDiv, character)
           );
         }
+      }).catch((error) => {
+        console.error("Error loading 3D character, proceeding with 2D fallback:", error);
+        progress.loaded().then(() => {
+          setTimeout(() => {
+            light.turnOnLights();
+          }, 500);
+        });
       });
 
       let mouse = { x: 0, y: 0 },
